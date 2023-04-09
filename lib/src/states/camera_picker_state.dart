@@ -173,7 +173,9 @@ class CameraPickerState extends State<CameraPicker>
     /// Hide system status bar automatically when the platform is not Android.
     /// 在非 Android 设备上自动隐藏状态栏
     if (!Platform.isAndroid) {
-      SystemChrome.setEnabledSystemUIOverlays(<SystemUiOverlay>[]);
+      // SystemChrome.setEnabledSystemUIOverlays(<SystemUiOverlay>[]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+          overlays: <SystemUiOverlay>[]);
     }
 
     initCameras();
@@ -182,7 +184,9 @@ class CameraPickerState extends State<CameraPicker>
   @override
   void dispose() {
     if (!Platform.isAndroid) {
-      SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+      // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+          overlays: SystemUiOverlay.values);
     }
     ambiguate(WidgetsBinding.instance)?.removeObserver(this);
     innerController?.dispose();
